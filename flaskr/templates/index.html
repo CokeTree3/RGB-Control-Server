@@ -3,22 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RGB Thing</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+	<link rel="stylesheet"href="{{ url_for('static', filename='index.css') }}"/>
+	<script src="{{ url_for('static', filename='index.js') }}" defer></script>
+    <title>RGB Color Selector</title>
 </head>
 <body>
-    <div>
-        <form method="POST">
-            <label for="red">Red (0-255):</label>
-            <input type="number" id="red" name="red" min="0" max="255" value="0"><br><br>
 
-            <label for="green">Green (0-255):</label>
-            <input type="number" id="green" name="green" min="0" max="255" value="0"><br><br>
-
-            <label for="blue">Blue (0-255):</label>
-            <input type="number" id="blue" name="blue" min="0" max="255" value="0"><br><br>
-
-            <input type="submit" value="Set Color">
-        </form>
+<div class="container">
+    <div class="hSettings">
+        <button onclick="sendShutdown()"><img src="{{ url_for('static', filename='images/shutdown.png') }}" style="width: 100%; height: 100%; object-fit: fill;"></button>
+        <button onclick="sendReboot()"><img src="{{ url_for('static', filename='images/reboot.png') }}" style="width: 100%; height: 100%; object-fit: fill;"></button>     
     </div>
+    <h2>Control Panel</h2>
+    <div class="modeSel">
+        <button onclick="gotoSolid()">Solid</button>
+        <button onclick="gotoFade()">Fade</button>
+        <button onclick="gotoFlash()">Flash</button>
+    </div>
+    <div class="spacer"></div>
+    <div class="inputContainer">
+        <label for="red">Red:</label>
+        <input type="number" id="red" min="0" max="255" placeholder="0-255">
+        
+        <label for="green">Green:</label>
+        <input type="number" id="green" min="0" max="255" placeholder="0-255">
+        
+        <label for="blue">Blue:</label>
+        <input type="number" id="blue" min="0" max="255" placeholder="0-255">
+    </div>
+    <div class="color-presets" id="colorPresets">
+        <div class="c-box" id="c-red"></div>
+        <div class="c-box" id="c-green"></div>
+        <div class="c-box" id="c-blue"></div>
+        <div class="c-box" id="c-lightgreen"></div>
+        <div class="c-box" id="c-white"></div>
+        <div class="c-box" id="c-purple"></div>
+    </div>
+    <div class="color-display" id="colorDisplay"></div>
+    
+    
+    
+    <button class="applyBtn" onclick="ApplyFromInput()">Apply Color</button>
+    
+</div>
 </body>
 </html>
